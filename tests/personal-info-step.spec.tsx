@@ -1,4 +1,4 @@
-import { PersonalInfoStep } from "@/components/personal-info";
+import { PersonalInfoStep } from "@/components/form-steps/personal-info";
 import { render, screen } from "@testing-library/react";
 
 

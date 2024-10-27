@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, Box } from '@mui/material';
 import { FormikProps } from 'formik';
-import { FormData } from '../types';
+import { FormData } from '../../types';
 
 interface PersonalInfoStepProps {
     formik: FormikProps<FormData>;

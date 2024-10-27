@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, FormControl, TextField } from '@mui/material';
-import { SurveyContext } from '../types';
+import { SurveyContext } from '../../types';
 
 interface ReviewStepProps {
     context: SurveyContext;

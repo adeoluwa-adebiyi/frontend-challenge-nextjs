@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, FormHelperText } from '@mui/material';
 import { FormikProps } from 'formik';
-import { FormData, SalaryOption } from '../types';
+import { FormData, SalaryOption } from '../../types';
 
 interface SalaryStepProps {
     formik: FormikProps<FormData>;

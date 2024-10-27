@@ -1,4 +1,4 @@
-import { SalaryStep } from "@/components/salary-step";
+import { SalaryStep } from "@/components/form-steps/salary-step";
 import { fireEvent } from "@testing-library/dom";
 import { render, screen } from "@testing-library/react";
 
