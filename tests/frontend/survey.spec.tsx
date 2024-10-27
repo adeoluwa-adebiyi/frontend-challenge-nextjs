@@ -1,11 +1,11 @@
 // Survey.test.tsx
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Survey from '../src/pages/survey';
-import { surveyMachine } from '../src/state/survey-machine';
+import Survey from '../../src/pages/survey';
+import { surveyMachine } from '../../src/state/survey-machine';
 
 
-jest.mock("../src/components/survey-progress", () => {
+jest.mock("../../src/components/survey-progress", () => {
     return {
         SurveyStepper: (props:{activeStep: string}) => {
         return <p>Progress-Bar</p>

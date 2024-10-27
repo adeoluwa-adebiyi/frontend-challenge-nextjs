@@ -24,11 +24,24 @@ const INTEREST_OPTIONS = [
     { value: 'Mehr als 4.000', label: 'Mehr als 4.000' }
 ];
 
-export interface SurveyProps{
+export interface SurveyProps {
     machine: typeof surveyMachine;
+    filled?: boolean;
 }
 
-const Survey: React.FC<SurveyProps> = ({machine}) => {
+const Survey: React.FC<SurveyProps> = ({ machine, filled }) => {
+    if (filled) {
+        return <Container maxWidth="md" sx={{ py: 4 }}>
+            <Card>
+                <CardContent>
+                    <SurveyStepper activeStep={4} />
+                    <form data-testid="survey-form" onSubmit={(e) => { formik.handleSubmit(e) }}>
+                        <SubmittedStep />
+                    </form>
+                </CardContent>
+            </Card>
+        </Container>
+    }
     const [state, send] = useActor(machine);
 
     const currentSchema = React.useMemo(() => {
@@ -82,7 +95,7 @@ const Survey: React.FC<SurveyProps> = ({machine}) => {
             <Card>
                 <CardContent>
                     <SurveyStepper activeStep={activeStep} />
-                    <form data-testid="survey-form" onSubmit={(e)=>{formik.handleSubmit(e)}}>
+                    <form data-testid="survey-form" onSubmit={(e) => { formik.handleSubmit(e) }}>
                         {renderCurrentStep()}
                         {state.value !== 'submitted' && (
                             <NavigationButtons

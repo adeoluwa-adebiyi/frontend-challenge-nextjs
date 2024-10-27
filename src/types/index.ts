@@ -9,6 +9,9 @@ export interface FormData {
     salary: string;
 }
 
+
+export const phoneValidator = Yup.string().phone("DE").required('Required');
+
 export type SurveyEvent =
     | { type: 'NEXT'; data: Partial<FormData> }
     | { type: 'PREV'; data: Partial<FormData> }
@@ -74,8 +77,6 @@ export interface SurveyStateSchema {
     };
 }
 
-export type SatisfactionLevel = '1' | '2' | '3' | '4' | '5';
-
 export interface SalaryOption {
     value: string;
     label: string;
@@ -120,7 +121,7 @@ export const personalInfoSchema = Yup.object<PersonalInfoSchemaType>({
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
     email: Yup.string().email('Invalid email').required('Required'),
-    phone: Yup.string().phone("DE").required('Required')
+    phone: phoneValidator
 });
 
 export const salarySchema = Yup.object<SalarySchemaType>({

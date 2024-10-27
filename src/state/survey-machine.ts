@@ -3,6 +3,8 @@
 import { setup, assign } from 'xstate';
 import { FormData, SurveyContext, SurveyEvent } from '../types';
 
+const API_ENDPOINT = 'http://localhost:3000/api/survey';
+
 const getPersistedState = (): FormData => {
     if (typeof window !== "undefined") {
         const savedState = window?.localStorage?.getItem('surveyState');
@@ -22,6 +24,19 @@ const getPersistedState = (): FormData => {
         salary: ''
     };
 };
+
+async function submitSurvey(data: FormData): Promise<void> {
+    const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        throw new Error(
+            `/${response.status}/Failed to create survey: ${response.statusText}`
+        );
+    }
+}
 
 export const surveyMachine = setup({
     types: {
@@ -45,14 +60,13 @@ export const surveyMachine = setup({
             };
             localStorage.setItem('surveyState', JSON.stringify(dataToSave));
         },
-        handleSubmit: assign({
-            formData: ({ context }) => {
+        handleSubmit: async({ context }) => {
                 localStorage.removeItem('surveyState');
-                return context.formData;
+                return await submitSurvey(context.formData);
             }
-        })
+        }
     }
-}).createMachine({
+).createMachine({
     id: 'survey',
     initial: 'personalInfo',
     context: {

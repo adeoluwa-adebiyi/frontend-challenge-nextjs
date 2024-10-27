@@ -35,19 +35,4 @@ describe('Survey Machine', () => {
         const savedData = JSON.parse(localStorage.setItem.mock.calls[0][1]);
         expect(savedData).toMatchObject(testData);
     });
-
-    // it('loads persisted data on initialization', () => {
-    //     const testData = {
-    //         firstName: 'John',
-    //         lastName: 'Doe',
-    //         email: 'john@example.com',
-    //         phone: '1234567890'
-    //     };
-
-    //     localStorage.getItem.mockReturnValue(JSON.stringify(testData));
-
-    //     const machine = interpret(surveyMachine).start();
-
-    //     expect(machine.state.context.formData).toMatchObject(testData);
-    // });
 });
